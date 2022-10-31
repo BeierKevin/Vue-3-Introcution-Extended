@@ -20,16 +20,26 @@
   <TransitionGroup name="list" tag="div" class="list-container">
     <!-- Vue Looping -->
     <!-- Using Components -->
-    <div v-for="album in filteredAlbums" v-bind:key="album.id">
-      {{ album.title }}
-    </div>
+    <AlbumCard
+      v-for="album in filteredAlbums"
+      v-bind:key="album.id"
+      :album="album"
+    >
+    </AlbumCard>
   </TransitionGroup>
 </template>
 
 <script>
+// Importing the AlbumCard component
+import AlbumCard from "@/components/AlbumCard.vue";
+
 // Options API
 export default {
   name: "HomeView",
+  // need to register the component which are in use
+  components: {
+    AlbumCard,
+  },
   // these variables can be accessed in the template via their name and inside the script via this.<name>
   data() {
     return {
