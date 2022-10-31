@@ -1,23 +1,31 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+// Vue router components
+import { createRouter, createWebHistory } from "vue-router";
 
+// Static import of the Vue Component
+import HomeView from "../views/HomeView.vue";
+
+// Vue Router usage
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      name: "404",
+      path: "/:pathMatch(.*)*",
+      // Dynamic import of Vue Component
+      component: () => import("@/views/PageNotFound.vue"),
+      meta: {
+        title: "404 - Page Not Found",
+      },
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
-})
+      path: "/",
+      name: "home",
+      component: HomeView,
+      meta: {
+        title: "Albums Overview",
+      },
+    },
+  ],
+});
 
-export default router
+export default router;

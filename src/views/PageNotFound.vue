@@ -1,4 +1,4 @@
-<template>Home View</template>
+<template>Page Not Found</template>
 
 <script></script>
 
